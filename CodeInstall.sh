@@ -1,4 +1,12 @@
 #! /bin/bash
+
+echo -n "Enter your Hipchat API key "
+read apikey
+if [ -z "${apikey}" ]; then
+  echo '!!!!!! ERROR :   API key can not be empty. Exiting. Please retry   !!!!!!'
+  exit 1
+fi
+
 echo ======================== Update and upgrade=======================
 sudo apt-get update && sudo apt-get upgrade -y
 
@@ -28,3 +36,9 @@ go get -u github.com/odeke-em/drive/cmd/drive
 echo ======================== Initialize Drive App =======================
 echo "open the link in a browser then Copy and Paste the authorization code:"
 drive init
+
+echo ======================== Download Git scripts =======================
+git clone https://github.com/Geordam/Code
+
+echo ======================== Adding API keys in the script file =======================
+sed -i 's/AUTH_TOKEN=/AUTH_TOKEN='$apikey'/g' Code/ScriptCode.sh
