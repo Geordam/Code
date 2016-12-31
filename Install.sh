@@ -22,10 +22,7 @@ export GOPATH=\$HOME/gopath
 export PATH=\$GOPATH:\$GOPATH/bin:\$PATH
 !
 source ~/.bashrc
-
-echo ======================== Connect to user to load the variable =======================
-sudo su - $USER
-cd Code
+exec bash
 
 echo ======================== Install Drive App =======================
 go get -u github.com/odeke-em/drive/cmd/drive
