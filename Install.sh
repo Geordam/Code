@@ -18,8 +18,8 @@ curl -O https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz && sudo
 echo ======================== Export Variables =======================
 export PATH=$PATH:/usr/local/go/bin
 cat << ! >> ~/.bashrc
-export GOPATH=\$HOME/gopath
-export PATH=\$GOPATH:\$GOPATH/bin:\$PATH
+export GOPATH=$HOME/gopath
+export PATH=$GOPATH:$GOPATH/bin:$PATH
 !
 . ~/.bashrc
 
