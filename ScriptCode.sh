@@ -1,9 +1,12 @@
 #!/bin/bash
 ROOM_ID=3442764
 
-#Put your Hipchat API token here
+#Put your Hipchat API token here if the first script did not do it
 AUTH_TOKEN_NOTIFICATION=
 AUTH_TOKEN_CREATEROOM=
+
+#Put your Hipchat API token here if the first script did not do it
+AUTH_TOKEN_BITLY=
 
 echo '==================    Questions    ======================'
 echo -n "Enter a code color : Red / Orange --> "
