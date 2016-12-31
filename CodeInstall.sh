@@ -16,11 +16,10 @@ curl -O https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz && sudo
 export PATH=$PATH:/usr/local/go/bin
 
 echo “======================== export Variables =======================”
-#cat << ! >> ~/.bashrc
-#export GOPATH=\$HOME/gopath
-#export PATH=\$GOPATH:\$GOPATH/bin:\$PATH
-##!
-echo "export GOPATH=\$HOME/gopath" >> ~/.bashrc;echo "export PATH=\$GOPATH:\$GOPATH/bin:\$PATH" >> ~/.bashrc
+cat << ! >> ~/.bashrc
+export GOPATH=\$HOME/gopath
+export PATH=\$GOPATH:\$GOPATH/bin:\$PATH
+!
 source ~/.bashrc
 
 echo “======================== Install Drive App =======================”
