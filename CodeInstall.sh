@@ -37,8 +37,5 @@ echo ======================== Initialize Drive App =======================
 echo "open the link in a browser then Copy and Paste the authorization code:"
 drive init
 
-echo ======================== Download Git scripts =======================
-git clone https://github.com/Geordam/Code
-
 echo ======================== Adding API keys in the script file =======================
 sed -i 's/AUTH_TOKEN=/AUTH_TOKEN='$apikey'/g' Code/ScriptCode.sh
