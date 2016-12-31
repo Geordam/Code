@@ -1,6 +1,6 @@
 #! /bin/bash
 
-echo -n "Enter your Hipchat API key "
+echo -n "Enter your Hipchat API key : "
 read apikey
 if [ -z "${apikey}" ]; then
   echo '!!!!!! ERROR :   API key can not be empty. Exiting. Please retry   !!!!!!'
