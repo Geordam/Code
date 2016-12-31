@@ -1,21 +1,9 @@
 #!/bin/bash
 ROOM_ID=3336898
-geordam=
-mohamed=
 
-echo '==================    Checking Username entered    ======================'
-if [ $1 = "geordam" ]; then
-AUTH_TOKEN=$geordam
-echo "Username accepted"
-else
-        if [ $1 = "mohamed" ]; then
-        AUTH_TOKEN=$mohamed
-        echo "Username accepted"
-        else
-                echo "!!!!!! ERROR :  The user $1 is unknown   !!!!!!"
-                exit 1
-        fi
-fi
+#Put your Hipchat API token here
+AUTH_TOKEN=
+
 echo '==================    Questions    ======================'
 echo -n "Enter a code color : Red / Orange --> "
 read color
