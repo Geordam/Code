@@ -23,5 +23,6 @@ export PATH=$GOPATH:$GOPATH/bin:$PATH
 !
 . ~/.bashrc
 
-echo ======================== Install Drive App =======================
-go get -u github.com/odeke-em/drive/cmd/drive
+echo ======================== First install Done =======================
+echo ======================== Run the second installation Now =======================
+sudo su - $USER
