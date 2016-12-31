@@ -24,3 +24,6 @@ export GOPATH=\$HOME/gopath
 export PATH=\$GOPATH:\$GOPATH/bin:\$PATH
 !
 source ~/.bashrc
+
+echo ======================== Install Drive App =======================
+go get -u github.com/odeke-em/drive/cmd/drive
