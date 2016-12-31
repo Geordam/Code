@@ -1,8 +1,14 @@
 #! /bin/bash
 
-echo -n "Enter your Hipchat API key : "
-read apikey
-if [ -z "${apikey}" ]; then
+echo -n "Enter your Hipchat API key Send Notification : "
+read apikeymessage
+if [ -z "${apikeymessage}" ]; then
+  echo '!!!!!! ERROR :   API key can not be empty. Exiting. Please retry   !!!!!!'
+  exit 1
+fi
+echo -n "Enter your Hipchat API key  Manage Rooms : "
+read apikeycreateroom
+if [ -z "${apikeycreateroom}" ]; then
   echo '!!!!!! ERROR :   API key can not be empty. Exiting. Please retry   !!!!!!'
   exit 1
 fi
@@ -38,4 +44,5 @@ echo "open the link in a browser then Copy and Paste the authorization code:"
 drive init
 
 echo ======================== Adding API keys in the script file =======================
-sed -i 's/AUTH_TOKEN=/AUTH_TOKEN='$apikey'/g' Code/ScriptCode.sh
+sed -i 's/AUTH_TOKEN_NOTIFICATION=/AUTH_TOKEN_NOTIFICATION='$apikeymessage'/g' Code/ScriptCode.sh
+sed -i 's/AUTH_TOKEN_CREATEROOM=/AUTH_TOKEN_CREATEROOM='$apikeycreateroom'/g' Code/ScriptCode.sh
