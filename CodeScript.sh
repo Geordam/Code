@@ -1,9 +1,23 @@
 #!/bin/bash
 ROOM_ID=3336898
-AUTH_TOKEN=MHI2ff2lP7HN4zDyI3w35JSb6q23tpkVt48TpiS2
-#AUTH_TOKEN=W7ilPaKxACGBzRmWbkgdsF2jAfEqa9dWk0PhtKXS
-DebriefPath='Noc-Support/In\ Progress/Testduplicate/'
+geordam=
+mohamed=
 
+echo '==================    Checking Username entered    ======================'
+if [ $1 = "geordam" ]; then
+AUTH_TOKEN=$geordam
+echo "Username accepted"
+else
+        if [ $1 = "mohamed" ]; then
+        AUTH_TOKEN=$mohamed
+        echo "Username accepted"
+        else
+                echo "!!!!!! ERROR :  The user $1 is unknown   !!!!!!"
+                exit 1
+        fi
+fi
+
+echo '==================    Questions    ======================'
 echo -n "Enter a code color : Red / Orange --> "
 read color
 echo -n "Enter a code Number --> "
@@ -17,7 +31,7 @@ then
         then
                 if [ -z "${room}" ];
                 then
-                        echo '==================Room can not be empty. Exiting. Please retry======================'
+                        echo '!!!!!! ERROR :   Room can not be empty. Exiting. Please retry   !!!!!!'
                         echo "Code color was : $Room"
                         exit 1
                 else
@@ -35,13 +49,13 @@ then
                         https://api.hipchat.com/v2/room/$ROOM_ID/notification?auth_token=$AUTH_TOKEN
                 fi
         else
-            echo '==================Wrong Code number entered. Exiting. Please retry======================'
+            echo '!!!!!!  ERROR :  Wrong Code number entered. Exiting. Please retry   !!!!!!'
                 echo "Code color was : $number"
                 echo "It needs to be a number"
                 exit 1
         fi
 else
-    echo '==================Wrong Code color entered. Exiting. Please retry======================'
+    echo '!!!!!!  ERROR :  Wrong Code color entered. Exiting. Please retry   !!!!!!'
         echo "Code color was : $color"
         echo "It needs to be Orange or Red"
         exit 1
