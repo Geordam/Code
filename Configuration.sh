@@ -24,9 +24,9 @@ if [ -z "${apikeybitly}" ]; then
 fi
 
 echo ======================== Adding API keys in the script file =======================
-sed -i 's/AUTH_TOKEN_NOTIFICATION=/AUTH_TOKEN_NOTIFICATION='$apikeymessage'/g' ./ScriptCode.sh
-sed -i 's/AUTH_TOKEN_CREATEROOM=/AUTH_TOKEN_CREATEROOM='$apikeycreateroom'/g' ./ScriptCode.sh
-sed -i 's/AUTH_TOKEN_BITLY=/AUTH_TOKEN_BITLY='$apikeybitly'/g' ./ScriptCode.sh
+sed -i 's/AUTH_TOKEN_NOTIFICATION=/AUTH_TOKEN_NOTIFICATION='$apikeymessage'/g' ~/Code/ScriptCode.sh
+sed -i 's/AUTH_TOKEN_CREATEROOM=/AUTH_TOKEN_CREATEROOM='$apikeycreateroom'/g' ~/Code/ScriptCode.sh
+sed -i 's/AUTH_TOKEN_BITLY=/AUTH_TOKEN_BITLY='$apikeybitly'/g' ~/Code/ScriptCode.sh
 
 echo ======================== Initialize Drive App =======================
 echo "open the link in a browser then Copy and Paste the authorization code:"
