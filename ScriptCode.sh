@@ -1,7 +1,7 @@
 #!/bin/bash
 ROOM_ID=3336898
-geordam=MHI2ff2lP7HN4zDyI3w35JSb6q23tpkVt48TpiS2
-mohamed=W7ilPaKxACGBzRmWbkgdsF2jAfEqa9dWk0PhtKXS
+geordam=
+mohamed=
 
 echo '==================    Checking Username entered    ======================'
 if [ $1 = "geordam" ]; then
