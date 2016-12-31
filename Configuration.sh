@@ -1,5 +1,8 @@
 #! /bin/bash
 
+echo ======================== Install Drive App =======================
+go get -u github.com/odeke-em/drive/cmd/drive
+
 echo ======================== Enter API Keys =======================
 echo -n "Enter your Hipchat API key Send Notification : "
 read apikeymessage
