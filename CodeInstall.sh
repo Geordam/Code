@@ -21,15 +21,11 @@ cat << ! >> ~/.bashrc
 export GOPATH=\$HOME/gopath
 export PATH=\$GOPATH:\$GOPATH/bin:\$PATH
 !
+source ~/.bashrc
 
 echo ======================== Connect to user to load the variable =======================
 sudo su - $USER
 cd Code
-source ~/.bashrc
 
 echo ======================== Install Drive App =======================
 go get -u github.com/odeke-em/drive/cmd/drive
-
-echo ======================== Initialize Drive App =======================
-echo "open the link in a browser then Copy and Paste the authorization code:"
-drive init
