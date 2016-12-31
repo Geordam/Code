@@ -26,5 +26,5 @@ echo ======================== Install Drive App =======================
 go get -u github.com/odeke-em/drive/cmd/drive
 
 echo ======================== Initialize Drive App =======================
-echo "open the link in a browser then copy and paste the Key"
+echo "open the link in a browser then Copy and Paste the authorization code:"
 drive init
