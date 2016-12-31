@@ -21,6 +21,9 @@ cat << ! >> ~/.bashrc
 export GOPATH=\$HOME/gopath
 export PATH=\$GOPATH:\$GOPATH/bin:\$PATH
 !
+
+echo ======================== Connect to user to load the variable =======================
+sudo su - $USER
 source ~/.bashrc
 
 echo ======================== Install Drive App =======================
