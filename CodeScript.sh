@@ -1,7 +1,8 @@
 #!/bin/bash
 ROOM_ID=3336898
 AUTH_TOKEN=MHI2ff2lP7HN4zDyI3w35JSb6q23tpkVt48TpiS2
-DebriefPath="Noc-Support/In Progress/Testduplicate"
+#AUTH_TOKEN=W7ilPaKxACGBzRmWbkgdsF2jAfEqa9dWk0PhtKXS
+DebriefPath='Noc-Support/In\ Progress/Testduplicate/'
 
 echo -n "Enter a code color : Red / Orange --> "
 read color
@@ -9,18 +10,39 @@ echo -n "Enter a code Number --> "
 read number
 echo -n "Enter a Hipchat room name --> "
 read room
-
-echo '------------------------------------Creation Debrief from Template------------------------------------'
-drive copy $DebriefPath/test '$DebriefPath/Code '$color' '$number' Debrief'
-echo '------------------------------------New Debrief Doc------------------------------------'
-drive url '$DebriefPath/Code '$color' '$number' Debrief'| awk '{print $5}'
-
-echo '------------------------------------bit.ly link creation------------------------------------'
-URLToCut=`drive url '$DebriefPath/Code '$color' '$number' Debrief'| awk '{print $5}'`
-curl -G "https://api-ssl.bitly.com/v3/shorten?access_token=ad5de2553587a9a77f6c8d8ad1b27a1032396594&format=txt" --data-urlencode "longUrl=$URLToCut"
-
-#echo '------------------------------------Send message for room opened------------------------------------'
-#curl -H "Content-Type: application/json" \
-#     -X POST \
-#     -d "{\"color\": \"gray\", \"message_format\": \"text\", \"message\": \"@here New Code opened : $3 $4 $5 $6 $7 $7 $8 $9 \" }" \
-#https://api.hipchat.com/v2/room/$ROOM_ID/notification?auth_token=$AUTH_TOKEN
+echo $color
+if [[ $color =~ ^(Orange|ORANGE|orange|ORange|Red|RED|red|REd)$ ]]
+then
+        if [[ "$number" =~ ^-?[0-9]+[.,]?[0-9]*$ ]]
+        then
+                if [ -z "${room}" ];
+                then
+                        echo '==================Room can not be empty. Exiting. Please retry======================'
+                        echo "Code color was : $Room"
+                        exit 1
+                else
+                        echo '------------------------------------Creation Debrief from Template------------------------------------'
+                        drive copy -id '1nui60dzQj7Fmpggrj8tKHFx-siS8t9jFxr2QlDe2ox8' 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'
+                        echo '------------------------------------New Debrief Doc------------------------------------'
+                        drive url 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'| awk '{print $6}'
+                        echo '------------------------------------bit.ly link creation------------------------------------'
+                        URLToCut=`drive url 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'| awk '{print $6}'`
+                        curl -G "https://api-ssl.bitly.com/v3/shorten?access_token=ad5de2553587a9a77f6c8d8ad1b27a1032396594&format=txt" --data-urlencode "longUrl=$URLToCut"
+                        echo '------------------------------------Send message for room opened------------------------------------'
+                        curl -H "Content-Type: application/json" \
+                        -X POST \
+                        -d "{\"color\": \"gray\", \"message_format\": \"text\", \"message\": \"@here New Code opened : $room \" }" \
+                        https://api.hipchat.com/v2/room/$ROOM_ID/notification?auth_token=$AUTH_TOKEN
+                fi
+        else
+            echo '==================Wrong Code number entered. Exiting. Please retry======================'
+                echo "Code color was : $number"
+                echo "It needs to be a number"
+                exit 1
+        fi
+else
+    echo '==================Wrong Code color entered. Exiting. Please retry======================'
+        echo "Code color was : $color"
+        echo "It needs to be Orange or Red"
+        exit 1
+fi
