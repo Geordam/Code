@@ -23,6 +23,6 @@ export PATH=$GOPATH:$GOPATH/bin:$PATH
 !
 . ~/.bashrc
 
-echo ======================== First install Done =======================
-echo ======================== Run the second installation Now =======================
+echo ======================== Install Done =======================
+echo ======================== Run the configuration Now =======================
 sudo su - $USER
