@@ -15,8 +15,8 @@ sudo apt-get install golang git mercurial -y
 echo ======================== Install go =======================
 curl -O https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz && sudo tar -C /usr/local -xzf go1.7.4.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/gopath
-export PATH=$GOPATH:$GOPATH/bin:$PATH
+sudo su - $USER -c 'export GOPATH=$HOME/gopath && export PATH=$GOPATH:$GOPATH/bin:$PATH'
+echo $GOPATH
 
 echo ======================== Export Variables =======================
 cat << ! >> ~/.bashrc
