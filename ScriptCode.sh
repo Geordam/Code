@@ -22,14 +22,17 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
         if [[ $color =~ ^(Orange|ORANGE|orange|ORange|Red|RED|red|REd)$ ]]
         then
                 if [[ "$number" =~ ^-?[0-9]+[.,]?[0-9]*$ ]]; then
-                        if [ -z "${room}" ]; then
-                                echo '!!!!!! ERROR :   Room can not be empty. Exiting. Please retry   !!!!!!'
-                                echo "Code color was : $Room"
+                        if [ -z "${name}" ]; then
+                                echo '!!!!!! ERROR :   Name can not be empty. Exiting. Please retry   !!!!!!'
+                                echo "Code name was : $name"
                                 exit 1
                         else
                                 echo '------------------------------------Creation Debrief from Template------------------------------------'
                                 drive copy -id '1nui60dzQj7Fmpggrj8tKHFx-siS8t9jFxr2QlDe2ox8' 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'
                                 echo '------------------------------------New Debrief Doc------------------------------------'
+                                echo '-------------------  Full info  -------------------'
+                                drive url 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'
+                                echo '-------------------  Shorten info -------------------'
                                 drive url 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'| awk '{print $6}'
                                 echo '------------------------------------bit.ly link creation------------------------------------'
                                 URLToCut=`drive url 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'| awk '{print $6}'`
