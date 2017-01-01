@@ -16,10 +16,9 @@ echo ======================== Install go =======================
 curl -O https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz && sudo tar -C /usr/local -xzf go1.7.4.linux-amd64.tar.gz
 
 echo ======================== Export Variables =======================
-export PATH=$PATH:/usr/local/go/bin
 cat << ! >> ~/.bashrc
 export GOPATH=$HOME/gopath
-export PATH=$GOPATH:$GOPATH/bin:$PATH
+export PATH=$PATH:$GOPATH:$GOPATH/bin
 !
 . ~/.bashrc
 
