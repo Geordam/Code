@@ -13,8 +13,8 @@ echo -n "Enter a code color : Red / Orange --> "
 read color
 echo -n "Enter a code Number --> "
 read number
-echo -n "Enter a Hipchat room name --> "
-read room
+echo -n "Enter the Code name --> "
+read name
 echo -n "Confirmation (Y/N) --> "
 read confirmation
 
@@ -33,20 +33,22 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
                                 drive url 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'| awk '{print $6}'
                                 echo '------------------------------------bit.ly link creation------------------------------------'
                                 URLToCut=`drive url 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'| awk '{print $6}'`
-                                echo "Debrief : " ; curl -G "https://api-ssl.bitly.com/v3/shorten?access_token=ad5de2553587a9a77f6c8d8ad1b27a1032396594&format=txt" --data-urlencode "longUrl=$URLToCut"
+                                DebriefLink=`curl -G "https://api-ssl.bitly.com/v3/shorten?access_token=ad5de2553587a9a77f6c8d8ad1b27a1032396594&format=txt" --data-urlencode "longUrl=$URLToCut"`
+                                echo "Debrief : $DebriefLink" 
                                 
                                 echo '------------------------------------Open Room------------------------------------'
                                 curl -H "Content-Type: application/json" \
                                 -X POST \
-                                -d "{\"name\": \$room}" \
-                                https://api.hipchat.com/v2/room?$AUTH_TOKEN_CREATEROOM
+                                -d "{\"name\": \"Test Code $color - $number - $name\" , \"topic\": \"$DebriefLink\"}" \
+                                https://api.hipchat.com/v2/room?auth_token=$AUTH_TOKEN_CREATEROOM
 
-                                
+
                                 echo '------------------------------------Send message for room opened------------------------------------'
                                 curl -H "Content-Type: application/json" \
                                 -X POST \
-                                -d "{\"color\": \"gray\", \"message_format\": \"text\", \"message\": \"@here New Code opened : $room \" }" \
+                                -d "{\"color\": \"gray\", \"message_format\": \"text\", \"message\": \"@here New Code opened : Test Code $color - $number - $name \" }" \
                                 https://api.hipchat.com/v2/room/$ROOM_ID/notification?auth_token=$AUTH_TOKEN_NOTIFICATION
+
                                 
                         fi
                 else
