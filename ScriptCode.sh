@@ -33,10 +33,11 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
                                 echo '-------------------  Full info  -------------------'
                                 drive url 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'
                                 echo '-------------------  Shorten info -------------------'
-                                drive url 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'| awk '{print $6}'
+                                URLDebrief=`drive url 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'| awk '{print $6}'`
+                                echo $URLDebrief
+                                
                                 echo '------------------------------------bit.ly link creation------------------------------------'
-                                URLToCut=`drive url 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'| awk '{print $6}'`
-                                DebriefLink=`curl -G "https://api-ssl.bitly.com/v3/shorten?access_token=$AUTH_TOKEN_BITLY&format=txt" --data-urlencode "longUrl=$URLToCut"`
+                                DebriefLink=`curl -G "https://api-ssl.bitly.com/v3/shorten?access_token=$AUTH_TOKEN_BITLY&format=txt" --data-urlencode "longUrl=$URLDebrief"`
                                 echo "Debrief : $DebriefLink" 
                                 
                                 echo '------------------------------------Open Room------------------------------------'
