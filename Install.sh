@@ -17,6 +17,7 @@ curl -O https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz && sudo
 
 echo ======================== Export Variables =======================
 cat << ! >> ~/.bashrc
+export PATH=$PATH:/usr/local/go/bin
 export GOPATH=\$HOME/gopath
 export PATH=\$GOPATH:\$GOPATH/bin:\$PATH
 !
@@ -24,5 +25,4 @@ source ~/.bashrc
 
 echo ======================== Install Done =======================
 echo ======================== Run the configuration Now =======================
-export PATH=$PATH:/usr/local/go/bin
 sudo su - $USER
