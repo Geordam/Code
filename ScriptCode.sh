@@ -55,9 +55,13 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
                                 echo '------------------------------------Open Room------------------------------------'
                                 curl -s -H "Content-Type: application/json" \
                                 -X POST \
-                                -d "{\"name\": \"Test Code $color - $number - $name\" , \"topic\": \"$DebriefLink\"}" \
+                                -d "{\"name\": \"Test $brand - Code $color - $number - $name\" , \"topic\": \"$DebriefLink\"}" \
                                 https://api.hipchat.com/v2/room?auth_token=$AUTH_TOKEN_CREATEROOM  >> /dev/null
 
+                                echo '------------------------------------FOR NOC2------------------------------------'
+                                echo "Debrief Doc: $DebriefLink"
+                                echo "Hipchat Room: Test $brand - Code $color - $number - $name"
+                                
                                 echo ""
                                 echo '------------------------------------------------------------------------'
                                 echo ""
