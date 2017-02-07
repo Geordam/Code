@@ -4,7 +4,7 @@ echo ======================== Update and upgrade =======================
 sudo apt-get update && sudo apt-get upgrade -y
 
 echo ======================== Install dependency =======================
-sudo apt-get install golang git mercurial -y
+sudo apt-get install git mercurial -y
 #sudo apt-get install build-essential software-properties-common -y
 #sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
 #sudo apt-get update
