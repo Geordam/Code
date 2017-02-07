@@ -56,11 +56,13 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
                                 curl -H "Content-Type: application/json" \
                                 -X POST \
                                 -d "{\"name\": \"Test Code $color - $number - $name\" , \"topic\": \"$DebriefLink\"}" \
-                                https://api.hipchat.com/v2/room?auth_token=$AUTH_TOKEN_CREATEROOM
+                                https://api.hipchat.com/v2/room?auth_token=$AUTH_TOKEN_CREATEROOM  >> /dev/null
 
                                 echo ""
                                 echo '------------------------------------------------------------------------'
+                                echo ""
                                 echo -n "Confirmation to send the notification on the Main room? (Y/N) --> "
+                                echo ""
                                 echo '------------------------------------------------------------------------'
                                 read confirmation2
                                 if [[ $confirmation2 =~ ^(y|Y|Yes|YES)$ ]]; then
