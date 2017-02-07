@@ -24,4 +24,5 @@ source ~/.bashrc
 
 echo ======================== Install Done =======================
 echo ======================== Run the configuration Now =======================
+export PATH=$PATH:/usr/local/go/bin
 sudo su - $USER
