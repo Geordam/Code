@@ -23,14 +23,13 @@ read confirmation
 #Main hipchat room Selection depending of the brand
 if [[ $brand =~ ^(Moonpig|moonpig|MOONPIG)$ ]]; then
     ROOM_ID=3442764
-fi
-if [[ $brand =~ ^(Photobox|photobox|PHOTOBOX)$ ]]; then
+elif [[ $brand =~ ^(Photobox|photobox|PHOTOBOX)$ ]]; then
     ROOM_ID=3442764
-fi
-if [ -z "$ROOM_ID" ]; then
+else
     echo "Issue on the brand name"
     echo "you have entered $brand"
     exit 1
+fi
 
 #Checking Inputs
 if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
