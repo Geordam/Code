@@ -23,20 +23,18 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
         then
                 if [[ "$number" =~ ^-?[0-9]+[.,]?[0-9]*$ ]]; then
                         if [ -z "${name}" ]; then
-                                echo '!!!!!! ERROR :   Name can not be empty. Exiting. Please retry   !!!!!!'
+                                echo '!!!!!! ERROR : Name can not be empty. Exiting. Please retry   !!!!!!'
                                 echo "Code name was : $name"
                                 exit 1
                         else
                                 echo '------------------------------------Creation Debrief from Template------------------------------------'
                                 drive copy -id '1nui60dzQj7Fmpggrj8tKHFx-siS8t9jFxr2QlDe2ox8' 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'
                                 echo '------------------------------------New Debrief Doc------------------------------------'
-                                #drive url 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief' >> /dev/null
-                                echo '-------------------  Shorten info -------------------'
                                 URLDebrief=`drive url 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'| awk '{print $6}'`
                                 echo $URLDebrief
                                 
                                 echo '------------------------------------bit.ly link creation------------------------------------'
-                                DebriefLink=`curl -G "https://api-ssl.bitly.com/v3/shorten?access_token=$AUTH_TOKEN_BITLY&format=txt" --data-urlencode "longUrl=$URLDebrief"` >> /dev/null
+                                DebriefLink=`curl -G "https://api-ssl.bitly.com/v3/shorten?access_token=$AUTH_TOKEN_BITLY&format=txt" --data-urlencode "longUrl=$URLDebrief"`
                                 echo "Debrief : $DebriefLink" 
                                 
                                 echo '------------------------------------Open Room------------------------------------'
@@ -45,14 +43,15 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
                                 -d "{\"name\": \"Test Code $color - $number - $name\" , \"topic\": \"$DebriefLink\"}" \
                                 https://api.hipchat.com/v2/room?auth_token=$AUTH_TOKEN_CREATEROOM
 
-                                echo -n "Confirmition to send the notification on the Main room? (Y/N) --> "
+                                echo ""
+                                echo -n "Confirmation to send the notification on the Main room? (Y/N) --> "
                                 read confirmation2
                                 if [[ $confirmation2 =~ ^(y|Y|Yes|YES)$ ]]; then
                                         echo '------------------------------------Send message for room opened------------------------------------'
                                         curl -H "Content-Type: application/json" \
                                         -X POST \
                                         -d "{\"color\": \"gray\", \"message_format\": \"text\", \"message\": \"@here New Code opened : Test Code $color - $number - $name \" }" \
-                                        https://api.hipchat.com/v2/room/$ROOM_ID/notification?auth_token=$AUTH_TOKEN_NOTIFICATION >> /dev/null
+                                        https://api.hipchat.com/v2/room/$ROOM_ID/notification?auth_token=$AUTH_TOKEN_NOTIFICATION
                                 else
                                     echo 'Please send it manually'
                                 fi
