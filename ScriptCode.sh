@@ -1,5 +1,5 @@
 #!/bin/bash
-ROOM_ID=3442764
+ROOM_ID=""
 
 #Put your Hipchat API token here if the first script did not do it
 AUTH_TOKEN_NOTIFICATION=
@@ -11,6 +11,8 @@ AUTH_TOKEN_BITLY=
 echo '==================    Questions    ======================'
 echo -n "Enter a code color : Red / Orange --> "
 read color
+echo -n "Enter a brand : Moonpig / Photobox --> "
+read brand
 echo -n "Enter a code Number --> "
 read number
 echo -n "Enter the Code name --> "
@@ -18,6 +20,19 @@ read name
 echo -n "Confirmation (Y/N) --> "
 read confirmation
 
+#Main hipchat room Selection depending of the brand
+if [[ $brand =~ ^(Moonpig|moonpig|MOONPIG)$ ]]; then
+    ROOM_ID=3442764
+fi
+if [[ $brand =~ ^(Photobox|photobox|PHOTOBOX)$ ]]; then
+    ROOM_ID=3442764
+fi
+if [ -z "$ROOM_ID" ]; then
+    echo "Issue on the brand name"
+    echo "you have entered $brand"
+    exit 1
+
+#Checking Inputs
 if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
         if [[ $color =~ ^(Orange|ORANGE|orange|ORange|Red|RED|red|REd)$ ]]
         then
