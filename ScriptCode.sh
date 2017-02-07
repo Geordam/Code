@@ -8,6 +8,7 @@ AUTH_TOKEN_CREATEROOM=
 #Put your Hipchat API token here if the first script did not do it
 AUTH_TOKEN_BITLY=
 
+clear
 echo '==================    Questions    ======================'
 echo -n "Enter a code color : Red / Orange --> "
 read color
@@ -58,7 +59,9 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
                                 https://api.hipchat.com/v2/room?auth_token=$AUTH_TOKEN_CREATEROOM
 
                                 echo ""
+                                echo '------------------------------------------------------------------------'
                                 echo -n "Confirmation to send the notification on the Main room? (Y/N) --> "
+                                echo '------------------------------------------------------------------------'
                                 read confirmation2
                                 if [[ $confirmation2 =~ ^(y|Y|Yes|YES)$ ]]; then
                                         echo '------------------------------------Send message for room opened------------------------------------'
