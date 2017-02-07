@@ -49,11 +49,11 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
                                 echo $URLDebrief
                                 
                                 echo '------------------------------------bit.ly link creation------------------------------------'
-                                DebriefLink=`curl -G "https://api-ssl.bitly.com/v3/shorten?access_token=$AUTH_TOKEN_BITLY&format=txt" --data-urlencode "longUrl=$URLDebrief"`
+                                DebriefLink=`curl -s -G "https://api-ssl.bitly.com/v3/shorten?access_token=$AUTH_TOKEN_BITLY&format=txt" --data-urlencode "longUrl=$URLDebrief"`
                                 echo "Debrief : $DebriefLink" 
                                 
                                 echo '------------------------------------Open Room------------------------------------'
-                                curl -H "Content-Type: application/json" \
+                                curl -s -H "Content-Type: application/json" \
                                 -X POST \
                                 -d "{\"name\": \"Test Code $color - $number - $name\" , \"topic\": \"$DebriefLink\"}" \
                                 https://api.hipchat.com/v2/room?auth_token=$AUTH_TOKEN_CREATEROOM  >> /dev/null
@@ -67,12 +67,12 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
                                 read confirmation2
                                 if [[ $confirmation2 =~ ^(y|Y|Yes|YES)$ ]]; then
                                         echo '------------------------------------Send message for room opened------------------------------------'
-                                        curl -H "Content-Type: application/json" \
+                                        curl -s -H "Content-Type: application/json" \
                                         -X POST \
                                         -d "{\"color\": \"gray\", \"message_format\": \"text\", \"message\": \"@here New Code opened : Test Code $color - $number - $name \" }" \
                                         https://api.hipchat.com/v2/room/$ROOM_ID/notification?auth_token=$AUTH_TOKEN_NOTIFICATION
                                 else
-                                    echo 'Please send it manually'
+                                    echo '!!!!!!  Please send it manually  !!!!!!'
                                 fi
                         fi
                 else
