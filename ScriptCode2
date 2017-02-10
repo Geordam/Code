@@ -14,8 +14,8 @@ echo '==================    Choice    ======================'
 #Loop until value 1 or 2 is selected
 while [[ "$CHOICECOLOR" != [12] ]]; do
   echo "Select the Color by choosing 1 or 2"
-  echo "1) Orange"
-  echo "2) Red"
+  echo "   1) Orange"
+  echo "   2) Red"
   read CHOICECOLOR
 done
 [[ $CHOICECOLOR = 1 ]] && color="Orange" || color="Red"
@@ -23,9 +23,9 @@ done
 #Loop until value 1 or 2 is selected
 while [[ "$CHOICEBRAND" != [12] ]]; do
   echo "Select the brand by choosing 1 or 2"
-  echo "1) MOONPIG"
-  echo "2) PHOTOBOX"
-  read CHOICECOLOR
+  echo "   1) MOONPIG"
+  echo "   2) PHOTOBOX"
+  read CHOICEBRAND
 done
 [[ $CHOICEBRAND = 1 ]] && brand="MOONPIG" || brand="PHOTOBOX"
 # Selecting the Hipchat Main Room
@@ -34,8 +34,8 @@ done
 #Loop until value 1 or 2 is selected
 while [[ "$CHOICERETRO" != [12] ]]; do
   echo "Is it a retro code"
-  echo "1) Yes it is retro"
-  echo "2) No it is not"
+  echo "   1) Yes it is retro"
+  echo "   2) No it is not"
   read CHOICERETRO
 done
 # For summary purpose
@@ -46,22 +46,23 @@ echo -n "Enter a code Number --> "
 read number
 # Check if it has 4 digits
 check=${#number}
-[[ $check -ge 4 ]] && echo "Code has 4 digits" || echo "Code number needs 4 digits" ; exit 1
+if [ $check = 4 ]; then echo "" ; else echo "!!!!!! Code number needs 4 digits !!!!!!" ; echo "" ; echo "exiting" ; exit 1 ; fi
 # Check if it is a number
-[[ $number =~ ^[0-9]+$ ]] && echo "Code number is an integer" || echo "!!!!!! Sorry integers only !!!!!!" ; exit 1
+if [[ -z "$number" || $number == *[^[:digit:]]* ]]; then echo "" else echo "!!!!!! Sorry integers only !!!!!!" ; exit 1 ; fi
 
 echo -n "Enter the Code name --> "
 read name
 name=$(echo $name | tr 'A-Z' 'a-z')
 # Check if it is empty
-[[ -z "${name}" ]] && echo "Name is not empty" ||  echo '!!!!!! ERROR : Name can not be empty. Exiting. Please retry   !!!!!!' ;exit 1
+if [[ -z "${name}" ]]; then echo '!!!!!! ERROR : Name can not be empty. Exiting. Please retry   !!!!!!' ; exit 1 ; else echo "Name is not empty" ; fi
 
 clear
 echo "========================== Summary =============================="
 echo ""
-echo "You have selected a $retro $color code"
-echo "The number is $number"
-echo "The title is $name"
+echo "   You have selected a $brand $retro code $color "
+echo "   The number is $number"
+echo "   The title is $name"
+echo ""
 echo "================================================================="
 echo ""
 echo -n "Confirmation (Y/N) --> "
