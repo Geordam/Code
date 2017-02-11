@@ -93,7 +93,6 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     echo '------------------------------------bit.ly link creation------------------------------------'
     DebriefLink=`curl -s -G "https://api-ssl.bitly.com/v3/shorten?access_token=$AUTH_TOKEN_BITLY&format=txt" --data-urlencode "longUrl=$URLDebrief"`
     if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured creating bitly URL !!!!!!" ; fi
-    echo "Debrief : $DebriefLink" 
 
     # Opening room if not a retro code
     if [[ $CHOICERETRO = 2 ]]; then
@@ -104,7 +103,7 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
       echo '------------------------------------Open Room------------------------------------'
       curl -s -H "Content-Type: application/json" \
       -X POST \
-      -d "{\"name\": \"HIPNAMECUT\" , \"topic\": \"$DebriefLink\"}" \
+      -d "{\"name\": \"$HIPNAMECUT\" , \"topic\": \"$DebriefLink\"}" \
       https://api.hipchat.com/v2/room?auth_token=$AUTH_TOKEN_CREATEROOM  >> /dev/null
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured creating the room !!!!!!" ; fi
     else
