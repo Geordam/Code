@@ -24,5 +24,5 @@ export PATH=\$GOPATH:\$GOPATH/bin:\$PATH
 source ~/.bashrc
 
 echo ======================== Install Done =======================
-echo ======================== Run the configuration Now =======================
+echo ======================== Run the Install2.sh =======================
 sudo su - $USER
