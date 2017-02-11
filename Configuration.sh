@@ -31,3 +31,5 @@ sed -i 's/AUTH_TOKEN_BITLY=/AUTH_TOKEN_BITLY='$apikeybitly'/g' ~/Code/ScriptCode
 echo ======================== Initialize Drive App =======================
 echo "open the link in a browser then Copy and Paste the authorization code:"
 drive init
+
+echo "Continue the installation by running Installation2.sh"
