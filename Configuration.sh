@@ -32,4 +32,4 @@ echo ======================== Initialize Drive App =======================
 echo "open the link in a browser then Copy and Paste the authorization code:"
 drive init
 
-echo "Continue the installation by running Installation2.sh"
+echo "Continue the installation by running Install2.sh"
