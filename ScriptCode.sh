@@ -78,35 +78,35 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     if [[ CHOICEBRAND = 1 ]]; then 
       #Moonpig debrief
       drive copy -id '1nui60dzQj7Fmpggrj8tKHFx-siS8t9jFxr2QlDe2ox8' 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'
-      if [[ $? !=0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
+      if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     else
       # Photobox debrief
       drive copy -id '1nui60dzQj7Fmpggrj8tKHFx-siS8t9jFxr2QlDe2ox8' 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'
-      if [[ $? !=0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
+      if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     fi
     echo '------------------------------------New Debrief Doc------------------------------------'
     URLDebrief=`drive url 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'| awk '{print $6}'`
-    if [[ $? !=0 ]]; then echo ""; echo "!!!!!! An error occured getting the debrief URL !!!!!!" ; fi
+    if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured getting the debrief URL !!!!!!" ; fi
     echo $URLDebrief
 
     # Creation bitly link
     echo '------------------------------------bit.ly link creation------------------------------------'
     DebriefLink=`curl -s -G "https://api-ssl.bitly.com/v3/shorten?access_token=$AUTH_TOKEN_BITLY&format=txt" --data-urlencode "longUrl=$URLDebrief"`
-    if [[ $? !=0 ]]; then echo ""; echo "!!!!!! An error occured creating bitly URL !!!!!!" ; fi
+    if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured creating bitly URL !!!!!!" ; fi
     echo "Debrief : $DebriefLink" 
 
     # Opening room if not a retro code
     if [[ $CHOICERETRO = 2 ]]; then
       # limiting the name to 50 caracters
       HIPNAMECUT="echo $brand - Code $color - $number - $name | awk '{print substr($0,0,50)}'"
-      if [[ $? !=0 ]]; then echo ""; echo "!!!!!! An error occured getting 50 caracters for hipchat room name !!!!!!" ; fi
+      if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured getting 50 caracters for hipchat room name !!!!!!" ; fi
       # Opening Room
       echo '------------------------------------Open Room------------------------------------'
       curl -s -H "Content-Type: application/json" \
       -X POST \
       -d "{\"name\": \"HIPNAMECUT\" , \"topic\": \"$DebriefLink\"}" \
       https://api.hipchat.com/v2/room?auth_token=$AUTH_TOKEN_CREATEROOM  >> /dev/null
-      if [[ $? !=0 ]]; then echo ""; echo "!!!!!! An error occured creating the room !!!!!!" ; fi
+      if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured creating the room !!!!!!" ; fi
     else
       echo "No room for Retrocodes"
     fi
@@ -133,7 +133,7 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
             -X POST \
             -d "{\"color\": \"gray\", \"message_format\": \"text\", \"message\": \"@here New Code opened : Test Code $color - $number - $name \" }" \
             https://api.hipchat.com/v2/room/$ROOM_ID/notification?auth_token=$AUTH_TOKEN_NOTIFICATION
-            if [[ $? !=0 ]]; then echo ""; echo "!!!!!! An error occured send notification to the main room !!!!!!" ; fi
+            if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured send notification to the main room !!!!!!" ; fi
     else
         echo "You have selected not to send the communication on the main room"
         echo '!!!!!!  Please send it manually if needed !!!!!!'
