@@ -51,7 +51,7 @@ read number
 check=${#number}
 if [ $check = 4 ]; then echo "" ; else echo "!!!!!! Code number needs 4 digits !!!!!!" ; echo "" ; echo "exiting" ; exit 1 ; fi
 # Check if it is a number
-if [[ -z "$number" || $number == *[^[:digit:]]* ]]; then echo "" ; else echo "!!!!!! Sorry integers only. Exiting. Please retry !!!!!!"; exit 1 ; fi
+if [[ $number == *[^[:digit:]]* ]]; then echo "!!!!!! Sorry integers only. Exiting. Please retry !!!!!!"; exit 1 ; else echo "" ; fi
 
 #Selection of the code name
 echo -n "Enter the Code name --> "
