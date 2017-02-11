@@ -97,7 +97,9 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     # Opening room if not a retro code
     if [[ $CHOICERETRO = 2 ]]; then
       # limiting the name to 50 caracters
-      HIPNAMECUT="echo $brand - Code $color - $number - $name | awk '{print substr($0,0,50)}'"
+      HIPNAMECUT="$brand - Code $color - $number - $name | awk '{print substr($0,0,50)}'"
+      echo "HIPNAMECUT is $HIPNAMECUT"
+      
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured getting 50 caracters for hipchat room name !!!!!!" ; fi
       # Opening Room
       echo '------------------------------------Open Room------------------------------------'
