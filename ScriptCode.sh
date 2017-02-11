@@ -51,14 +51,14 @@ read number
 check=${#number}
 if [ $check = 4 ]; then echo "" ; else echo "!!!!!! Code number needs 4 digits !!!!!!" ; echo "" ; echo "exiting" ; exit 1 ; fi
 # Check if it is a number
-if [[ -z "$number" || $number == *[^[:digit:]]* ]]; then echo "" else echo "!!!!!! Sorry integers only. Exiting. Please retry !!!!!!"; exit 1 ; fi
+if [[ -z "$number" || $number == *[^[:digit:]]* ]]; then echo "" ; else echo "!!!!!! Sorry integers only. Exiting. Please retry !!!!!!"; exit 1 ; fi
 
 #Selection of the code name
 echo -n "Enter the Code name --> "
 read name
 name=$(echo $name | tr 'A-Z' 'a-z')
 # Check if it is empty
-if [[ -z "${name}" ]]; then echo '!!!!!! ERROR : Name can not be empty. Exiting. Please retry   !!!!!!' ; exit 1 ; else echo "Name is not empty" ; fi
+if [[ -z "${name}" ]]; then echo '!!!!!! ERROR : Name can not be empty. Exiting. Please retry   !!!!!!' ; exit 1 ; else echo "" ; fi
 
 # Checking Summary and confirmation
 clear
