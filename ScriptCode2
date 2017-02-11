@@ -29,7 +29,7 @@ while [[ "$CHOICEBRAND" != [12] ]]; do
 done
 [[ $CHOICEBRAND = 1 ]] && brand="MOONPIG" || brand="PHOTOBOX"
 # Selecting the Hipchat Main Room
-[[ $CHOICEBRAND = 1 ]] && ROOM_ID=3442764 || ROOM_ID=3442764 
+[[ $CHOICEBRAND = 1 ]] && ROOM_ID=3576162 || ROOM_ID=3442764 
 
 #Loop until value 1 or 2 is selected
 while [[ "$CHOICERETRO" != [12] ]]; do
@@ -41,14 +41,13 @@ done
 # For summary purpose
 [[ $CHOICERETRO = 1 ]] && retro="retro" || retro="" 
 
-
-echo -n "Enter a code Number --> "
+echo -n "Enter the code Number --> "
 read number
 # Check if it has 4 digits
 check=${#number}
 if [ $check = 4 ]; then echo "" ; else echo "!!!!!! Code number needs 4 digits !!!!!!" ; echo "" ; echo "exiting" ; exit 1 ; fi
 # Check if it is a number
-if [[ -z "$number" || $number == *[^[:digit:]]* ]]; then echo "" else echo "!!!!!! Sorry integers only !!!!!!" ; exit 1 ; fi
+if [[ -z "$number" || $number == *[^[:digit:]]* ]]; then echo "" else echo "!!!!!! Sorry integers only. Exiting. Please retry !!!!!!"; exit 1 ; fi
 
 echo -n "Enter the Code name --> "
 read name
@@ -79,15 +78,27 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     DebriefLink=`curl -s -G "https://api-ssl.bitly.com/v3/shorten?access_token=$AUTH_TOKEN_BITLY&format=txt" --data-urlencode "longUrl=$URLDebrief"`
     echo "Debrief : $DebriefLink" 
 
-    echo '------------------------------------Open Room------------------------------------'
-    curl -s -H "Content-Type: application/json" \
-    -X POST \
-    -d "{\"name\": \"Test $brand - Code $color - $number - $name\" , \"topic\": \"$DebriefLink\"}" \
-    https://api.hipchat.com/v2/room?auth_token=$AUTH_TOKEN_CREATEROOM  >> /dev/null
-
+    # Opening room if not a retro code
+    if [[ $CHOICERETRO = 2 ]]; then
+      # limiting the name to 50 caracters
+      HIPNAMECUT="echo $brand - Code $color - $number - $name | awk '{print substr($0,0,50)}'"
+      # Opening Room
+      echo '------------------------------------Open Room------------------------------------'
+      curl -s -H "Content-Type: application/json" \
+      -X POST \
+      -d "{\"name\": \"Test $brand - Code $color - $number - $name\" , \"topic\": \"$DebriefLink\"}" \
+      https://api.hipchat.com/v2/room?auth_token=$AUTH_TOKEN_CREATEROOM  >> /dev/null
+    else
+      echo "No debrief for Retrocodes"
+    fi
+    
     echo '------------------------------------FOR NOC2------------------------------------'
+    if [[ $CHOICERETRO = 1 ]]; then
     echo "Debrief Doc: $DebriefLink"
     echo "Hipchat Room: Test $brand - Code $color - $number - $name"
+    else
+    echo "Debrief Doc: $DebriefLink"
+    fi
 
     echo ""
     echo '------------------------------------------------------------------------'
@@ -103,7 +114,8 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
             -d "{\"color\": \"gray\", \"message_format\": \"text\", \"message\": \"@here New Code opened : Test Code $color - $number - $name \" }" \
             https://api.hipchat.com/v2/room/$ROOM_ID/notification?auth_token=$AUTH_TOKEN_NOTIFICATION
     else
-        echo '!!!!!!  Please send it manually  !!!!!!'
+        echo "You have selected not to send the communication on the main room"
+        echo '!!!!!!  Please send it manually if needed !!!!!!'
     fi
 else
         echo '!!!!!!  ERROR : Confirmation not approved. Try again   !!!!!!'
