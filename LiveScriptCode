@@ -77,11 +77,11 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     echo '------------------------------------Creation Debrief from Template------------------------------------'
     if [[ CHOICEBRAND = 1 ]]; then 
       #Moonpig debrief
-      drive copy -id '1nui60dzQj7Fmpggrj8tKHFx-siS8t9jFxr2QlDe2ox8' 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'
+      drive copy -id '1NOQvGvyjcYZVhhZg04RE127taPrH2PKomu-Se3GEpn8' 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents '$color' '$number' Debrief'
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     else
       # Photobox debrief
-      drive copy -id '1nui60dzQj7Fmpggrj8tKHFx-siS8t9jFxr2QlDe2ox8' 'Noc-Support/In Progress/Testduplicate/Code '$color' '$number' Debrief'
+      drive copy -id '1v-P9B3i5TOGg4ywP_91yXm9iH5QmcLiJDR9tY4svZeU' 'PBX, S9 and HF Code Debrief documents '$color' '$number' Debrief'
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     fi
     echo '------------------------------------New Debrief Doc------------------------------------'
