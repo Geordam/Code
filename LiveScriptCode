@@ -31,7 +31,7 @@ while [[ "$CHOICEBRAND" != [12] ]]; do
 done
 [[ $CHOICEBRAND = 1 ]] && brand="MOONPIG" || brand="PHOTOBOX"
 # Selecting the Hipchat Main Room
-[[ $CHOICEBRAND = 1 ]] && ROOM_ID=3576162 || ROOM_ID=3442764 
+[[ $CHOICEBRAND = 1 ]] && ROOM_ID=635285 || ROOM_ID=795977 
 
 #Selection if retro
 #Loop until value 1 or 2 is selected
