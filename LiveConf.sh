@@ -15,7 +15,7 @@ if [ -z "${apikeybitly}" ]; then
 fi
 
 echo ======================== Adding API keys in the script file =======================
-sed -i 's/AUTH_TOKENS_lack=/AUTH_TOKEN_Slack='$apikeyslack'/g' ~/Code/LiveScriptCode.sh
+sed -i 's/AUTH_TOKEN_Slack=/AUTH_TOKEN_Slack='$apikeyslack'/g' ~/Code/LiveScriptCode.sh
 if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured adding the token for Hipchat notificaton room, please add manually !!!!!!" ; fi
 sed -i 's/AUTH_TOKEN_BITLY=/AUTH_TOKEN_BITLY='$apikeybitly'/g' ~/Code/LiveScriptCode.sh
 if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured adding the token for BitLy !!!!!!" ; fi
