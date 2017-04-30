@@ -1,5 +1,5 @@
 #!/bin/bash
-ROOM_ID=""
+CHANNEL_ID=""
 
 #Put your Hipchat API token here if the first script did not do it
 AUTH_TOKEN_Slack=
@@ -10,7 +10,7 @@ AUTH_TOKEN_BITLY=
 clear
 echo '==================    Choice    ======================'
 
-#Selection of the color
+#Selection of the Code color
 #Loop until value 1 or 2 is selected
 while [[ "$CHOICECOLOR" != [12] ]]; do
   echo "Select the Color by choosing 1 or 2"
@@ -98,11 +98,9 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     DebriefLink=`curl -s -G "https://api-ssl.bitly.com/v3/shorten?access_token=$AUTH_TOKEN_BITLY&format=txt" --data-urlencode "longUrl=$URLDebrief"`
     if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured creating bitly URL !!!!!!" ; fi
 
-    # Opening room if not a retro code
+    # Opening channel if not a retro code
     if [[ $CHOICERETRO = 2 ]]; then
-      # limiting the name to 50 caracters
-      #if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured getting 50 caracters for hipchat room name !!!!!!" ; fi
-      # Opening Room
+      # Opening Channel
       echo '------------------------------------Open Channel------------------------------------'
       wget https://slack.com/api/channels.create?token=$AUTH_TOKEN_Slack\&name=code-$CHOICECOLOR-$number >/dev/null 2>&1
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured creating the channel !!!!!!" ; fi
@@ -118,7 +116,7 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
       echo "Debrief Doc: $DebriefLink"
     fi
 
-    # Confirmation on sending notification on main room
+    # Confirmation on sending notification on main channel
     echo ""
     echo '------------------------------------------------------------------------'
     echo ""
@@ -127,13 +125,9 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     echo '------------------------------------------------------------------------'
     read confirmation2
     if [[ $confirmation2 =~ ^(y|Y|Yes|YES)$ ]]; then
-            echo '------------------------------------Send message for room opened------------------------------------'
-            #curl -s -H "Content-Type: application/json" \
-            #-X POST \
-            #-d "{\"color\": \"gray\", \"message_format\": \"text\", \"message\": \"@here New Code opened : Test Code $color - $number - $name \" }" \
-            #https://api.hipchat.com/v2/room/$ROOM_ID/notification?auth_token=$AUTH_TOKEN_NOTIFICATION
+            echo '------------------------------------Send message for channel opened------------------------------------'
             wget https://slack.com/api/chat.postMessage?token=$AUTH_TOKEN_Slack\&channel=noctestcode\&text='@here, Test Code-$CHOICECOLOR-$number has been opened'\&as_user=true >/dev/null 2>&1
-            if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured send notification to the main room !!!!!!" ; fi
+            if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured send notification to the main channel !!!!!!" ; fi
     else
         echo "You have selected not to send the communication on the main incident channel"
         echo '!!!!!!  Please send it manually if needed !!!!!!'
