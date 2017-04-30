@@ -18,7 +18,7 @@ while [[ "$CHOICECOLOR" != [12] ]]; do
   echo "   2) Red"
   read CHOICECOLOR
 done
-[[ $CHOICECOLOR = 1 ]] && color="Orange" || color="Red"
+[[ $CHOICECOLOR = 1 ]] && color="orange" || color="red"
 
 #Selection of the brand
 #Loop until value 1 or 2 is selected
@@ -104,8 +104,8 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
       #if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured getting 50 caracters for hipchat room name !!!!!!" ; fi
       # Opening Room
       echo '------------------------------------Open Channel------------------------------------'
-      wget https://slack.com/api/channels.create?token=$AUTH_TOKEN_Slack\&name=Code-$CHOICECOLOR-$number >/dev/null 2>&1
-      if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured creating the room !!!!!!" ; fi
+      wget https://slack.com/api/channels.create?token=$AUTH_TOKEN_Slack\&name=code-$CHOICECOLOR-$number >/dev/null 2>&1
+      if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured creating the channel !!!!!!" ; fi
     else
       echo "No Channel for Retrocodes"
     fi
@@ -122,7 +122,7 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     echo ""
     echo '------------------------------------------------------------------------'
     echo ""
-    echo -n "Confirmation to send the notification on the Main room? (Y/N) --> "
+    echo -n "Confirmation to send the notification on the Incident channel? (Y/N) --> "
     echo ""
     echo '------------------------------------------------------------------------'
     read confirmation2
@@ -132,10 +132,10 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
             #-X POST \
             #-d "{\"color\": \"gray\", \"message_format\": \"text\", \"message\": \"@here New Code opened : Test Code $color - $number - $name \" }" \
             #https://api.hipchat.com/v2/room/$ROOM_ID/notification?auth_token=$AUTH_TOKEN_NOTIFICATION
-            wget https://slack.com/api/chat.postMessage?token=$AUTH_TOKEN_Slack\&channel=noctestcode\&text='Test Code-$CHOICECOLOR-$number has been opened'\&as_user=true >/dev/null 2>&1
+            wget https://slack.com/api/chat.postMessage?token=$AUTH_TOKEN_Slack\&channel=noctestcode\&text='@here, Test Code-$CHOICECOLOR-$number has been opened'\&as_user=true >/dev/null 2>&1
             if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured send notification to the main room !!!!!!" ; fi
     else
-        echo "You have selected not to send the communication on the main room"
+        echo "You have selected not to send the communication on the main incident channel"
         echo '!!!!!!  Please send it manually if needed !!!!!!'
     fi
 else
