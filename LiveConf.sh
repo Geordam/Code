@@ -3,7 +3,7 @@
 echo ======================== Enter API Keys =======================
 echo -n "Enter your Slack API key : "
 read apikeyslack
-if [ -z "${apikeymessage}" ]; then
+if [ -z "${apikeyslack}" ]; then
   echo '!!!!!! ERROR :   API key can not be empty. Exiting. Please retry   !!!!!!'
   exit 1
 fi
