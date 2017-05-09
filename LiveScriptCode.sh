@@ -74,21 +74,21 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     echo '------------------------------------Creation Debrief from Template------------------------------------'
     if [[ CHOICEBRAND = 1 ]]; then 
       #Moonpig debrief
-      drive copy -id '1NOQvGvyjcYZVhhZg04RE127taPrH2PKomu-Se3GEpn8' 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents/Moonpig '$color' '$number' Debrief'
+      drive copy -id '1NOQvGvyjcYZVhhZg04RE127taPrH2PKomu-Se3GEpn8' 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents/Moonpig Code '$color' '$number' Debrief'
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     else
       # Photobox debrief
-      drive copy -id '1v-P9B3i5TOGg4ywP_91yXm9iH5QmcLiJDR9tY4svZeU' 'PBX, S9 and HF Code Debrief documents/Photobox '$color' '$number' Debrief'
+      drive copy -id '1v-P9B3i5TOGg4ywP_91yXm9iH5QmcLiJDR9tY4svZeU' 'PBX, S9 and HF Code Debrief documents/Photobox Code '$color' '$number' Debrief'
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     fi
     echo '------------------------------------New Debrief Doc------------------------------------'
     if [[ CHOICEBRAND = 1 ]]; then 
       #Moonpig debrief
-      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents/Moonpig '$color' '$number' Debrief'| awk '{print $6}'`
+      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents/Moonpig Code '$color' '$number' Debrief'| awk '{print $15}'`
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     else
       # Photobox debrief
-      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/Photobox '$color' '$number' Debrief'| awk '{print $6}'`
+      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/Photobox Code '$color' '$number' Debrief'| awk '{print $11}'`
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     fi
     echo $URLDebrief
