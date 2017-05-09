@@ -74,21 +74,21 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     echo '------------------------------------Creation Debrief from Template------------------------------------'
     if [[ CHOICEBRAND = 1 ]]; then 
       #Moonpig debrief
-      drive copy -id '1NOQvGvyjcYZVhhZg04RE127taPrH2PKomu-Se3GEpn8' 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents '$color' '$number' Debrief'
+      drive copy -id '1NOQvGvyjcYZVhhZg04RE127taPrH2PKomu-Se3GEpn8' 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents/Moonpig '$color' '$number' Debrief'
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     else
       # Photobox debrief
-      drive copy -id '1v-P9B3i5TOGg4ywP_91yXm9iH5QmcLiJDR9tY4svZeU' 'PBX, S9 and HF Code Debrief documents '$color' '$number' Debrief'
+      drive copy -id '1v-P9B3i5TOGg4ywP_91yXm9iH5QmcLiJDR9tY4svZeU' 'PBX, S9 and HF Code Debrief documents/Photobox '$color' '$number' Debrief'
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     fi
     echo '------------------------------------New Debrief Doc------------------------------------'
     if [[ CHOICEBRAND = 1 ]]; then 
       #Moonpig debrief
-      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents '$color' '$number' Debrief'| awk '{print $6}'`
+      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents/Moonpig '$color' '$number' Debrief'| awk '{print $6}'`
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     else
       # Photobox debrief
-      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents '$color' '$number' Debrief'| awk '{print $6}'`
+      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/Photobox '$color' '$number' Debrief'| awk '{print $6}'`
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     fi
     echo $URLDebrief
@@ -102,7 +102,7 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     if [[ $CHOICERETRO = 2 ]]; then
       # Opening Channel
       echo '------------------------------------Open Channel------------------------------------'
-      wget https://slack.com/api/channels.create?token=$AUTH_TOKEN_Slack\&name=code-$CHOICECOLOR-$number >/dev/null 2>&1
+      wget https://slack.com/api/channels.create?token=$AUTH_TOKEN_Slack\&name=code-$color-$number >/dev/null 2>&1
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured creating the channel !!!!!!" ; fi
     else
       echo "No Channel for Retrocodes"
@@ -111,7 +111,7 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     echo '------------------------------------FOR NOC2------------------------------------'
     if [[ $CHOICERETRO = 2 ]]; then
       echo "Debrief Doc: $DebriefLink"
-      echo "Slack Channel : Test  - Code-$CHOICECOLOR-$number"
+      echo "Slack Channel : Test  - Code-$color-$number"
     else
       echo "Debrief Doc: $DebriefLink"
     fi
@@ -126,7 +126,7 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     read confirmation2
     if [[ $confirmation2 =~ ^(y|Y|Yes|YES)$ ]]; then
             echo '------------------------------------Send message for channel opened------------------------------------'
-            wget https://slack.com/api/chat.postMessage?token=$AUTH_TOKEN_Slack\&channel=noctestcode\&text='@here, Test Code-$CHOICECOLOR-$number has been opened'\&as_user=true >/dev/null 2>&1
+            wget https://slack.com/api/chat.postMessage?token=$AUTH_TOKEN_Slack\&channel=noctestcode\&text='@here, Test Code-'$color'-'$number' has been opened'\&as_user=true >/dev/null 2>&1
             if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured send notification to the main channel !!!!!!" ; fi
     else
         echo "You have selected not to send the communication on the main incident channel"
