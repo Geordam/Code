@@ -1,5 +1,5 @@
 #!/bin/bash
-CHANNEL_ID=""
+CHANNEL_ID="C54DF7HN3"
 
 #Put your Hipchat API token here if the first script did not do it
 AUTH_TOKEN_Slack=
