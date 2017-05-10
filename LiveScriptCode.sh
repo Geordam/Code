@@ -72,7 +72,7 @@ read confirmation
 
 if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     echo '------------------------------------Creation Debrief from Template------------------------------------'
-    if [[ CHOICEBRAND = 1 ]]; then 
+    if [[ $CHOICEBRAND = 1 ]]; then 
       #Moonpig debrief
       drive copy -id '1NOQvGvyjcYZVhhZg04RE127taPrH2PKomu-Se3GEpn8' 'Moonpig Code Debrief documents/'$brand' Code '$color' '$number' Debrief'
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
@@ -82,7 +82,7 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     fi
     echo '------------------------------------New Debrief Doc------------------------------------'
-    if [[ CHOICEBRAND = 1 ]]; then 
+    if [[ $CHOICEBRAND = 1 ]]; then 
       #Moonpig debrief
       URLDebrief=`drive url 'Moonpig Code Debrief documents/'$brand' Code '$color' '$number' Debrief'|sed 's,.*\(http.://[^ ]*\),\1,g'`
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
