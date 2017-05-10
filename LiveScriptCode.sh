@@ -84,11 +84,11 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     echo '------------------------------------New Debrief Doc------------------------------------'
     if [[ CHOICEBRAND = 1 ]]; then 
       #Moonpig debrief
-      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents/Moonpig Code '$color' '$number' Debrief'| awk '{print $15}'`
+      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents/Moonpig Code '$color' '$number' Debrief'|sed 's,.*\(http.://[^ ]*\),\1,g'`
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     else
       # Photobox debrief
-      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/Photobox Code '$color' '$number' Debrief'| awk '{print $11}'`
+      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/Photobox Code '$color' '$number' Debrief'|sed 's,.*\(http.://[^ ]*\),\1,g'`
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     fi
     echo $URLDebrief
