@@ -74,7 +74,7 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     echo '------------------------------------Creation Debrief from Template------------------------------------'
     if [[ CHOICEBRAND = 1 ]]; then 
       #Moonpig debrief
-      drive copy -id '1NOQvGvyjcYZVhhZg04RE127taPrH2PKomu-Se3GEpn8' 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents/'$brand' Code '$color' '$number' Debrief'
+      drive copy -id '1NOQvGvyjcYZVhhZg04RE127taPrH2PKomu-Se3GEpn8' 'Moonpig Code Debrief documents/'$brand' Code '$color' '$number' Debrief'
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     else
       # Photobox debrief
@@ -84,7 +84,7 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     echo '------------------------------------New Debrief Doc------------------------------------'
     if [[ CHOICEBRAND = 1 ]]; then 
       #Moonpig debrief
-      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents/'$brand' Code '$color' '$number' Debrief'|sed 's,.*\(http.://[^ ]*\),\1,g'`
+      URLDebrief=`drive url 'Moonpig Code Debrief documents/'$brand' Code '$color' '$number' Debrief'|sed 's,.*\(http.://[^ ]*\),\1,g'`
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     else
       # Photobox debrief
