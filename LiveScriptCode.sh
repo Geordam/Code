@@ -74,21 +74,21 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     echo '------------------------------------Creation Debrief from Template------------------------------------'
     if [[ CHOICEBRAND = 1 ]]; then 
       #Moonpig debrief
-      drive copy -id '1NOQvGvyjcYZVhhZg04RE127taPrH2PKomu-Se3GEpn8' 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents/Moonpig Code '$color' '$number' Debrief'
+      drive copy -id '1NOQvGvyjcYZVhhZg04RE127taPrH2PKomu-Se3GEpn8' 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents/'$brand' Code '$color' '$number' Debrief'
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     else
       # Photobox debrief
-      drive copy -id '1v-P9B3i5TOGg4ywP_91yXm9iH5QmcLiJDR9tY4svZeU' 'PBX, S9 and HF Code Debrief documents/Photobox Code '$color' '$number' Debrief'
+      drive copy -id '1v-P9B3i5TOGg4ywP_91yXm9iH5QmcLiJDR9tY4svZeU' 'PBX, S9 and HF Code Debrief documents/'$brand' Code '$color' '$number' Debrief'
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     fi
     echo '------------------------------------New Debrief Doc------------------------------------'
     if [[ CHOICEBRAND = 1 ]]; then 
       #Moonpig debrief
-      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents/Moonpig Code '$color' '$number' Debrief'|sed 's,.*\(http.://[^ ]*\),\1,g'`
+      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/Moonpig Code Debrief documents/'$brand' Code '$color' '$number' Debrief'|sed 's,.*\(http.://[^ ]*\),\1,g'`
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     else
       # Photobox debrief
-      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/Photobox Code '$color' '$number' Debrief'|sed 's,.*\(http.://[^ ]*\),\1,g'`
+      URLDebrief=`drive url 'PBX, S9 and HF Code Debrief documents/'$brand' Code '$color' '$number' Debrief'|sed 's,.*\(http.://[^ ]*\),\1,g'`
       if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured duplicating the debrief doc !!!!!!" ; fi
     fi
     echo $URLDebrief
@@ -126,7 +126,7 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     read confirmation2
     if [[ $confirmation2 =~ ^(y|Y|Yes|YES)$ ]]; then
             echo '------------------------------------Send message for channel opened------------------------------------'
-            wget https://slack.com/api/chat.postMessage?token=$AUTH_TOKEN_Slack\&channel=noctestcode\&text='@here, Test Code-'$color'-'$number' has been opened'\&as_user=true >/dev/null 2>&1
+            wget https://slack.com/api/chat.postMessage?token=$AUTH_TOKEN_Slack\&channel=noctestcode\&text='@here, Test Code-'$color'-'$number' has been opened : '$name'\&as_user=true >/dev/null 2>&1
             if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured send notification to the main channel !!!!!!" ; fi
     else
         echo "You have selected not to send the communication on the main incident channel"
