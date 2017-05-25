@@ -1,6 +1,4 @@
 #!/bin/bash
-CHANNEL_ID="C54DF7HN3"
-
 #Put your Hipchat API token here if the first script did not do it
 AUTH_TOKEN_Slack=
 
@@ -126,7 +124,7 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     read confirmation2
     if [[ $confirmation2 =~ ^(y|Y|Yes|YES)$ ]]; then
             echo '------------------------------------Send message for channel opened------------------------------------'
-            wget https://slack.com/api/chat.postMessage?token=$AUTH_TOKEN_Slack\&channel=noctestcode\&text="@here, Code-"$color"-"$number" has been opened : $brand - $name"\&as_user=true >/dev/null 2>&1
+            wget https://slack.com/api/chat.postMessage?token=$AUTH_TOKEN_Slack\&channel=incidents\&text="@here , #code-"$color"-"$number" has been opened : $brand - $name"\&as_user=true >/dev/null 2>&1
             if [[ $? != 0 ]]; then echo ""; echo "!!!!!! An error occured send notification to the main channel !!!!!!" ; fi
     else
         echo "You have selected not to send the communication on the main incident channel"
