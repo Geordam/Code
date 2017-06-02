@@ -109,7 +109,7 @@ if [[ $confirmation =~ ^(y|Y|Yes|YES)$ ]]; then
     echo '------------------------------------FOR NOC2------------------------------------'
     if [[ $CHOICERETRO = 2 ]]; then
       echo "Debrief Doc: $DebriefLink"
-      echo "Slack Channel : Test  - Code-$color-$number"
+      echo "Slack Channel : #code-$color-$number"
     else
       echo "Debrief Doc: $DebriefLink"
     fi
